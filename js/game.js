@@ -1,7 +1,7 @@
 // Contient la logique du jeu
 
 let actorId = 1136406; // Tom Holland
-let actorData = {};
+let actorData = null;
 let movieList = [];
 let currentGameTurn = 1;
 let maxGameTurn = 10;
@@ -44,9 +44,7 @@ function playOne() {
     console.log(movie);
     console.log(movieList);
     isInMovieList(movie, movieList) ? goodAnswers++ : badAnswers++;
-    $('#goodAnswers').html(goodAnswers);
-    $('#badAnswers').html(badAnswers);
-    $('#currentGameTurn').html(currentGameTurn);
+    refreshDisplay();
   }
 }
 
@@ -59,12 +57,7 @@ async function playGame(actor_id) {
   actorData = await getActor(actor_id);
   getListOfMovies(actor_id);
   badAnswers = 0;
-  $('#currentGameTurn').html(currentGameTurn);
-  $('#maxGameTurn').html(maxGameTurn);
-  $('#goodAnswers').html(goodAnswers);
-  $('#badAnswers').html(badAnswers);
-  $('#selectedActorName').html(actorData.name);
-
+  refreshDisplay();
   $('#startButton').prop("disabled", true);
 }
 
@@ -77,4 +70,20 @@ function endGame() {
   gameTurn = 0;
   goodAnswers = 0;
   badAnswers = 0;
+  currentGameTurn = 1;
+  actorData = null;
+  movieList = [];
+  $('#startButton').prop("disabled", false);
+  refreshDisplay();
+}
+
+/**
+ * Permet de rafraîchir le index.html contenant les variables changées pendant une partie
+ */
+function refreshDisplay() {
+  $('#currentGameTurn').html(currentGameTurn);
+  $('#maxGameTurn').html(maxGameTurn);
+  $('#goodAnswers').html(goodAnswers);
+  $('#badAnswers').html(badAnswers);
+  $('#selectedActorName').html(actorData !== null ? actorData.name : '-');
 }
