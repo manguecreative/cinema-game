@@ -55,10 +55,28 @@ function playOne() {
  */
 async function playGame(actor_id) {
   actorData = await getActor(actor_id);
+  displayActorCard(actorData);
+  console.log(actorData);
   getListOfMovies(actor_id);
-  badAnswers = 0;
   refreshDisplay();
   $('#startButton').prop("disabled", true);
+}
+
+function displayActorCard(actorData) {
+  $('#actorPicture').attr('src', 'https://image.tmdb.org/t/p/original' + actorData.profile_path);
+  $('#actorPicture').attr('alt', 'https://image.tmdb.org/t/p/original' + actorData.name);
+  $('#actorName').html( actorData.name);
+  $('#actorBiography').html( actorData.biography);
+  $('#actorBirthday').html( actorData.birthday);
+  $('#actorPlaceOfBirth').html( actorData.place_of_birth);
+
+  $('#actorCard').show();
+  $('#actorHelperText').hide();
+}
+
+function hideActorCard() {
+  $('#actorCard').hide();
+  $('#actorHelperText').show();
 }
 
 /**
@@ -74,7 +92,9 @@ function endGame() {
   actorData = null;
   movieList = [];
   $('#startButton').prop("disabled", false);
+  $('#inputFilmName').val('');
   refreshDisplay();
+  hideActorCard();
 }
 
 /**
