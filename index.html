@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="css/custom.css">
 </head>
 <body class="text-center">
-
 <div class="container">
-  <div>
-    <h1 class="font-weight-normal">Cinema Game</h1>
+  <div class="row">
+    <h1 class="font-weight-normal">Cinema Game<br><small class="text-muted">Le meilleur blindtest du cinéma!</small></h1>
     <h2>Tour <span id="currentGameTurn">-</span>/<span id="maxGameTurn">-</span></h2>
+    <div id="turnProgressBar" class="progress"></div>
   </div>
   <div class="row">
     <div class="col-sm">
@@ -40,28 +40,39 @@
       <div id="actorCard" style="display: none;">
         <div class="row">
           <div class="col">
-            <img src="" alt="" id="actorPicture">
-            <p id="actorBirthday"></p>
-            <p id="actorPlaceOfBirth"></p>
+            <figure class="figure">
+              <img src="" alt="" class="figure-img img-fluid rounded" id="actorPicture">
+              <figcaption class="figure-caption">
+                <p id="actorBirthday"></p>
+                <p id="actorPlaceOfBirth"></p>
+              </figcaption>
+            </figure>
           </div>
           <div class="col">
-            <h5 id="actorName"></h5>
+            <h5 class="text-start" id="actorName"></h5>
             <p class="text-start" id="actorBiography"></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Bouton début / fin de partie -->
-  <div class="row">
-    <div class="col-sm">
-      <button onclick="playGame(actorId)" type="button" class="btn btn-xs btn-outline-success" id="startButton">Lancer la partie</button>
-      <button onclick="endGame()" type="button" id="endButton" class="btn btn-xs btn-outline-dark">Fin de la partie</button>
-    </div>
-  </div>
 
   <div class="row">
     <h3>Configuration de la partie</h3>
+    <div class="col">
+      <h4>Instructions</h4>
+      <p>Vous pouvez lancer directement la partie en cliquant sur "Lancer la partie". Cela lance une nouvelle partie avec
+        un acteur prédéfini</p>
+      <p>Vous pouvez aussi jouer avec un acteur de votre choix ! Pour cela, utilisez notre sélécteur d'acteur sur la droite.
+      Il vous suffit d'entrer le nom de l'acteur, de cliquer sur le bouton "Rechercher" et de jouer avec l'acteur de votre choix.</p>
+      <p>Le bouton "Fin de partie" réinitialise tous les paramètres de la partie.</p>
+      <p>Bonne chance !</p>
+    </div>
+    <div class="col">
+      <!-- Bouton début / fin de partie -->
+      <button onclick="playGame(actorId)" type="button" class="btn btn-xs btn-outline-success" id="startButton">Lancer la partie</button>
+      <button onclick="endGame()" type="button" id="endButton" class="btn btn-xs btn-outline-dark">Fin de la partie</button>
+    </div>
     <div class="col">
       <h4>Sélécteur d'acteur</h4>
       <div class="input-group mb-3">
@@ -73,9 +84,6 @@
 
         </ul>
       </div>
-    </div>
-    <div class="col">
-      <h4>Autres</h4>
     </div>
   </div>
 </div>

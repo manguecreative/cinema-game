@@ -96,6 +96,7 @@ function endGame() {
   movieList = [];
   $('#startButton').prop("disabled", false);
   $('#inputFilmName').val('');
+  $('#turnProgressBar').html('');
   refreshDisplay();
   hideActorCard();
 }
@@ -113,8 +114,11 @@ function refreshDisplay() {
     let currentAnswer = submittedAnswer.pop();
     if (currentAnswer.isCorrect) {
       $( '#submittedAnswer' ).append("<p class='text-success'>✓ "+ currentAnswer.answer +"</p>");
+      $( '#turnProgressBar' ).append("<div class='progress-bar bg-success' role='progressbar' style='width: 10%' aria-valuenow='"+ (currentGameTurn - 1) * 10 +"'aria-valuemin='0' aria-valuemax='100'></div>");
     } else {
       $( '#submittedAnswer' ).append("<p class='text-danger'>❌ "+ currentAnswer.answer +"</p>");
+      $( '#turnProgressBar' ).append("<div class='progress-bar bg-danger' role='progressbar' style='width: 10%' aria-valuenow='"+ (currentGameTurn - 1) * 10 +"'aria-valuemin='0' aria-valuemax='100'></div>");
+
     }
   } else {
     $('#submittedAnswer').html('');
