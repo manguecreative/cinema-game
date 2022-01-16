@@ -50,5 +50,11 @@ async function getMovie(id) {
 
 //Zone custom - pour vos propres fonctions
 
+async function searchPerson(query) {
+  console.log("[SearchPersonQuery - Début");
+  const data = await getData(BASEURL+"search/person/?api_key="+APIKey+"&language=us-US"+"&query="+query);
+  console.log("[SearchPersonQuery - Fin");
+  return data;
+}
 
 //Fin de zone custom

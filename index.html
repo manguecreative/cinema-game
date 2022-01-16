@@ -57,6 +57,25 @@
       <button onclick="endGame()" type="button" id="endButton" class="btn btn-xs btn-outline-dark">Fin de la partie</button>
     </div>
   </div>
+
+  <div class="row">
+    <h3>Configuration de la partie</h3>
+    <div class="col">
+      <h4>Sélécteur d'acteur</h4>
+      <div class="input-group mb-3">
+        <input id="inputActorName" type="text" class="form-control" placeholder="Entrez un nom d'acteur" aria-label="Entrez un nom d'acteur" aria-describedby="button-addon2">
+        <button onclick="triggerSearchPerson()" class="btn btn-outline-secondary" type="button" id="button-addon2">Rechercher</button>
+      </div>
+      <div class="text-start">
+        <ul id="searchActorResult" class="list-unstyled">
+
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <h4>Autres</h4>
+    </div>
+  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"

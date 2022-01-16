@@ -60,6 +60,8 @@ async function playGame(actor_id) {
   getListOfMovies(actor_id);
   refreshDisplay();
   $('#startButton').prop("disabled", true);
+  $('#searchActorResult').html('');
+  $('#inputActorName').val('');
 }
 
 function displayActorCard(actorData) {
@@ -106,4 +108,22 @@ function refreshDisplay() {
   $('#goodAnswers').html(goodAnswers);
   $('#badAnswers').html(badAnswers);
   $('#selectedActorName').html(actorData !== null ? actorData.name : '-');
+}
+
+
+/**
+ * Evolution 5A - Proposer de jouer avec n'importe quel acteur
+ */
+async function triggerSearchPerson() {
+  let response = await searchPerson($('#inputActorName').val());
+  // Construction de la liste pour la la vue
+  let ul = document.getElementById('searchActorResult');
+  ul.innerHTML = '';
+  response.results.forEach(function (person) {
+    let li = document.createElement('li');
+    ul.appendChild(li);
+
+    li.innerHTML += "<a href='#' onclick='playGame(" + person.id + ")'>Lancer une partie avec " + person.name + "</a>";
+  });
+  console.log(response);
 }
