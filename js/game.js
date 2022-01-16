@@ -104,7 +104,7 @@ function endGame() {
   gameTurn = 0;
   goodAnswers = 0;
   badAnswers = 0;
-  currentGameTurn = 1;
+  currentGameTurn = 0;
   actorData = null;
   movieList = [];
   $('#startButton').prop("disabled", false);
