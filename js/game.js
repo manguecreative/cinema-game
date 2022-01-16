@@ -3,6 +3,7 @@
 let actorId = 1136406; // Tom Holland
 let actorData = null;
 let movieList = [];
+let submittedAnswer = [];
 let currentGameTurn = 1;
 let maxGameTurn = 10;
 let goodAnswers = 0;
@@ -29,7 +30,9 @@ async function getListOfMovies(actor_id) {
  * @returns {boolean}
  */
 function isInMovieList(movie, movieList) {
-  return movieList.includes(movie);
+  let isInMovie = movieList.includes(movie);
+  submittedAnswer.push({ 'answer': movie, 'isCorrect': isInMovie});
+  return isInMovie;
 }
 
 /**
@@ -41,8 +44,6 @@ function playOne() {
   } else {
     currentGameTurn++;
     movie = document.getElementById('inputFilmName').value
-    console.log(movie);
-    console.log(movieList);
     isInMovieList(movie, movieList) ? goodAnswers++ : badAnswers++;
     refreshDisplay();
   }
@@ -108,6 +109,16 @@ function refreshDisplay() {
   $('#goodAnswers').html(goodAnswers);
   $('#badAnswers').html(badAnswers);
   $('#selectedActorName').html(actorData !== null ? actorData.name : '-');
+  if (submittedAnswer.length > 0) {
+    let currentAnswer = submittedAnswer.pop();
+    if (currentAnswer.isCorrect) {
+      $( '#submittedAnswer' ).append("<p class='text-success'>✓ "+ currentAnswer.answer +"</p>");
+    } else {
+      $( '#submittedAnswer' ).append("<p class='text-danger'>❌ "+ currentAnswer.answer +"</p>");
+    }
+  } else {
+    $('#submittedAnswer').html('');
+  }
 }
 
 
